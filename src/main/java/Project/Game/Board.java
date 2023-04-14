@@ -33,22 +33,22 @@ public class Board {
 
     public void initializePieces() {
         for (int i = 0; i < 8; i++){
-            board[1][i].setOccupyingPiece(new Pawn());
-            board[6][i].setOccupyingPiece(new Pawn());   
+            board[1][i].setOccupyingPiece(new Pawn(1, board[1][i])); //Initialize the black pawns
+            board[6][i].setOccupyingPiece(new Pawn(0, board[6][i])); //Initialize the white pawns
         }
 
-        board[7][3].setOccupyingPiece(new Queen());
-        board[0][3].setOccupyingPiece(new Queen());
+        board[7][3].setOccupyingPiece(new Queen()); // The white queen
+        board[0][3].setOccupyingPiece(new Queen()); // The black queen
 
-        King bk = new King();
+        King bk = new King(); 
         King wk = new King();
-        board[0][4].setOccupyingPiece(bk);
-        board[7][4].setOccupyingPiece(wk);
+        board[0][4].setOccupyingPiece(bk); // The Black king
+        board[7][4].setOccupyingPiece(wk); // The white king
 
-        board[0][0].setOccupyingPiece(new Rook());
-        board[0][7].setOccupyingPiece(new Rook());
-        board[7][0].setOccupyingPiece(new Rook());
-        board[7][7].setOccupyingPiece(new Rook());
+        board[0][0].setOccupyingPiece(new Rook(1, board[0][0]));
+        board[0][7].setOccupyingPiece(new Rook(1, board[0][7]));
+        board[7][0].setOccupyingPiece(new Rook(0, board[7][0]));
+        board[7][7].setOccupyingPiece(new Rook(0, board[7][7]));
 
         board[0][1].setOccupyingPiece(new Knight());
         board[0][6].setOccupyingPiece(new Knight());
