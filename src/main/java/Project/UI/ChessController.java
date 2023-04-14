@@ -12,7 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class ChessController {
-    
+
     @FXML GridPane grid;
+
+    
     
 }
