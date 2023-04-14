@@ -16,6 +16,6 @@ public class Rook extends Piece {
         int x = this.getPosition().getX();
         int y = this.getPosition().getY();
         
-        return getLinearOccupations(board, x, y)
+        return getLinearOccupations(board, x, y);
     }}
    

@@ -22,9 +22,10 @@ public class Queen extends Piece {
         
         
         List<Square> diagMoves = getDiagonalOccupations(board, x, y);
-        List<Square> linearMoves = getLinearOccupations(board, x, y)
+        List<Square> linearMoves = getLinearOccupations(board, x, y);
         
-        legalMoves.addAll(bMoves);
+        legalMoves.addAll(diagMoves);
+        legalMoves.addAll(linearMoves);
 
         
         return legalMoves;
