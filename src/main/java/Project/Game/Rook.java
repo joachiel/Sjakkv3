@@ -17,5 +17,9 @@ public class Rook extends Piece {
         int y = this.getPosition().getY();
         
         return getLinearOccupations(board, x, y);
-    }}
+    }
+    public char getSymbol () {
+        return 'r';
+    }
+}
    

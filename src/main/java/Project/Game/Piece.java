@@ -52,32 +52,32 @@ public abstract class Piece {
         int lastXleft = 0;
         
         for (int i = 0; i < y; i++) {
-            if (board[i][x].isOccupied()) {
-                if (board[i][x].getOccupyingPiece().getColor() != this.color) {
+            if (board[x][i].isOccupied()) {
+                if (board[x][i].getOccupyingPiece().getColor() != this.color) {
                     lastYabove = i;
                 } else lastYabove = i + 1;
             }
         }
 
         for (int i = 7; i > y; i--) {
-            if (board[i][x].isOccupied()) {
-                if (board[i][x].getOccupyingPiece().getColor() != this.color) {
+            if (board[x][i].isOccupied()) {
+                if (board[x][i].getOccupyingPiece().getColor() != this.color) {
                     lastYbelow = i;
                 } else lastYbelow = i - 1;
             }
         }
 
         for (int i = 0; i < x; i++) {
-            if (board[y][i].isOccupied()) {
-                if (board[y][i].getOccupyingPiece().getColor() != this.color) {
+            if (board[i][y].isOccupied()) {
+                if (board[i][y].getOccupyingPiece().getColor() != this.color) {
                     lastXleft = i;
                 } else lastXleft = i + 1;
             }
         }
 
         for (int i = 7; i > x; i--) {
-            if (board[y][i].isOccupied()) {
-                if (board[y][i].getOccupyingPiece().getColor() != this.color) {
+            if (board[i][y].isOccupied()) {
+                if (board[i][y].getOccupyingPiece().getColor() != this.color) {
                     lastXright = i;
                 } else lastXright = i - 1;
             }
@@ -88,11 +88,11 @@ public abstract class Piece {
         ArrayList<Square> linearOccup = new ArrayList<Square>();
         
         for (int i = occups[0]; i <= occups[1]; i++) {
-            if (i != y) linearOccup.add(board[i][x]);
+            if (i != y) linearOccup.add(board[x][i]);
         }
         
         for (int i = occups[2]; i <= occups[3]; i++) {
-            if (i != x) linearOccup.add(board[y][i]);
+            if (i != x) linearOccup.add(board[i][y]);
         }
 
         return linearOccup;
@@ -174,4 +174,6 @@ public abstract class Piece {
     }
     
     public abstract List<Square> getLegalMoves(Board b);
+
+    public abstract char getSymbol();
 }

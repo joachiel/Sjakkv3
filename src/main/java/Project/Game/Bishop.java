@@ -16,4 +16,7 @@ public class Bishop extends Piece {
         
         return getDiagonalOccupations(board, x, y);
     }
+    public char getSymbol () {
+        return 'b';
+    }
 }

@@ -38,5 +38,8 @@ LinkedList<Square> legalMoves = new LinkedList<Square>();
         
         return legalMoves;
     }
+    public char getSymbol () {
+        return 'k';
+    }
 
 }

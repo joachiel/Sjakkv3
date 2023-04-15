@@ -83,4 +83,7 @@ public class Pawn extends Piece {
         
         return legalMoves;
     }
+    public char getSymbol () {
+        return 'p';
+    }
 }

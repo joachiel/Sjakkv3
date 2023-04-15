@@ -33,5 +33,8 @@ public class Knight extends Piece {
         
         return legalMoves;
     }
+    public char getSymbol () {
+        return 'n';
+    }
 
 }
