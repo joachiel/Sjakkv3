@@ -50,6 +50,9 @@ public class ChessController {
                 if(legalMoves.contains(board1.board[cordX][cordY]) && board1.getSelectedPiece().move(board1.board[cordX][cordY]) == true){
                         board1.getSelectedPiece().move(board1.board[cordX][cordY]);
                         previousSquare.getChildren().remove(selectedPiece);
+                        if(selectedSquare.getChildren() != null){
+                            selectedSquare.getChildren().removeAll();
+                        }
                         selectedSquare.getChildren().add(selectedPiece);
                         this.previousSquare = null;
                         this.selectedSquare = null;
@@ -67,6 +70,14 @@ public class ChessController {
             Integer cordX = Integer.parseInt(String.valueOf(selectedPiece.getParent().toString().replace("Pane[id=pane", "").replace("]", "").charAt(1)));
             board1.setSelectedPiece(board1.board[cordX][cordY].getOccupyingPiece());
             System.out.println(selectedPiece);
+            List<Square> legalMoves = board1.getSelectedPiece().getLegalMoves(board1);
+            for (Square s : legalMoves) {
+                System.out.println("X: "+s.getX());
+                System.out.println("Y: "+s.getY());
+            }
+            System.out.println(board1.getSelectedPiece().getPosition().getX());
+            System.out.println(board1.getSelectedPiece().getPosition().getY());
         }
     }
 }
+

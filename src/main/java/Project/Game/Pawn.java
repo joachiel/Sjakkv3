@@ -29,54 +29,54 @@ public class Pawn extends Piece {
         int y = this.getPosition().getY();
         int c = this.getColor();
         
-        if (c == 0) {
+        if (c == 1) {
             if (!wasMoved) {
-                if (!board[y+2][x].isOccupied()) {
-                    legalMoves.add(board[y+2][x]);
+                if (!board[x][y+2].isOccupied()) {
+                    legalMoves.add(board[x][y+2]);
                 }
             }
             
             if (y+1 < 8) {
-                if (!board[y+1][x].isOccupied()) {
-                    legalMoves.add(board[y+1][x]);
+                if (!board[x][y+1].isOccupied()) {
+                    legalMoves.add(board[x][y+1]);
                 }
             }
             
             if (x+1 < 8 && y+1 < 8) {
-                if (board[y+1][x+1].isOccupied()) {
-                    legalMoves.add(board[y+1][x+1]);
+                if (board[x+1][y+1].isOccupied()) {
+                    legalMoves.add(board[x+1][y+1]);
                 }
             }
                 
             if (x-1 >= 0 && y+1 < 8) {
-                if (board[y+1][x-1].isOccupied()) {
-                    legalMoves.add(board[y+1][x-1]);
+                if (board[x-1][y+1].isOccupied()) {
+                    legalMoves.add(board[x-1][y+1]);
                 }
             }
         }
         
-        if (c == 1) {
+        if (c == 0) {
             if (!wasMoved) {
-                if (!board[y-2][x].isOccupied()) {
-                    legalMoves.add(board[y-2][x]);
+                if (!board[x][y-2].isOccupied()) {
+                    legalMoves.add(board[x][y-2]);
                 }
             }
             
             if (y-1 >= 0) {
-                if (!board[y-1][x].isOccupied()) {
-                    legalMoves.add(board[y-1][x]);
+                if (!board[x][y-1].isOccupied()) {
+                    legalMoves.add(board[x][y-1]);
                 }
             }
             
             if (x+1 < 8 && y-1 >= 0) {
-                if (board[y-1][x+1].isOccupied()) {
-                    legalMoves.add(board[y-1][x+1]);
+                if (board[x+1][y-1].isOccupied()) {
+                    legalMoves.add(board[x+1][y-1]);
                 }
             }
                 
             if (x-1 >= 0 && y-1 >= 0) {
-                if (board[y-1][x-1].isOccupied()) {
-                    legalMoves.add(board[y-1][x-1]);
+                if (board[x-1][y-1].isOccupied()) {
+                    legalMoves.add(board[x-1][y-1]);
                 }
             }
         }

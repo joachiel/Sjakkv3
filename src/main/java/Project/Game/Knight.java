@@ -22,7 +22,7 @@ public class Knight extends Piece {
                 if(Math.abs(i) == 2 ^ Math.abs(k) == 2) {
                     if (k != 0 && i != 0) {
                         try {
-                            legalMoves.add(board[y + k][x + i]);
+                            legalMoves.add(board[x + i][y + k]);
                         } catch (ArrayIndexOutOfBoundsException e) {
                             continue;
                         }

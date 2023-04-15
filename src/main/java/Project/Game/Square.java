@@ -37,7 +37,7 @@ public class Square {
 
     // Code for capture of pieces
     public void capture(Piece p) {
-        Piece c = getOccupyingPiece();
+        Piece c = this.getOccupyingPiece();
         if(p.getColor() == 0 && c.getColor() == 1){
             board.blackPieces.remove(c);
         }

@@ -111,60 +111,60 @@ public abstract class Piece {
         int ySE = y + 1;
         
         while (xNW >= 0 && yNW >= 0) {
-            if (board[yNW][xNW].isOccupied()) {
-                if (board[yNW][xNW].getOccupyingPiece().getColor() == this.color) {
+            if (board[xNW][yNW].isOccupied()) {
+                if (board[xNW][yNW].getOccupyingPiece().getColor() == this.color) {
                     break;
                 } else {
-                    diagOccup.add(board[yNW][xNW]);
+                    diagOccup.add(board[xNW][yNW]);
                     break;
                 }
             } else {
-                diagOccup.add(board[yNW][xNW]);
+                diagOccup.add(board[xNW][yNW]);
                 yNW--;
                 xNW--;
             }
         }
         
         while (xSW >= 0 && ySW < 8) {
-            if (board[ySW][xSW].isOccupied()) {
-                if (board[ySW][xSW].getOccupyingPiece().getColor() == this.color) {
+            if (board[xSW][ySW].isOccupied()) {
+                if (board[xSW][ySW].getOccupyingPiece().getColor() == this.color) {
                     break;
                 } else {
-                    diagOccup.add(board[ySW][xSW]);
+                    diagOccup.add(board[xSW][ySW]);
                     break;
                 }
             } else {
-                diagOccup.add(board[ySW][xSW]);
+                diagOccup.add(board[xSW][ySW]);
                 ySW++;
                 xSW--;
             }
         }
         
         while (xSE < 8 && ySE < 8) {
-            if (board[ySE][xSE].isOccupied()) {
-                if (board[ySE][xSE].getOccupyingPiece().getColor() == this.color) {
+            if (board[xSE][ySE].isOccupied()) {
+                if (board[xSE][ySE].getOccupyingPiece().getColor() == this.color) {
                     break;
                 } else {
-                    diagOccup.add(board[ySE][xSE]);
+                    diagOccup.add(board[xSE][ySE]);
                     break;
                 }
             } else {
-                diagOccup.add(board[ySE][xSE]);
+                diagOccup.add(board[xSE][ySE]);
                 ySE++;
                 xSE++;
             }
         }
         
         while (xNE < 8 && yNE >= 0) {
-            if (board[yNE][xNE].isOccupied()) {
-                if (board[yNE][xNE].getOccupyingPiece().getColor() == this.color) {
+            if (board[xNE][yNE].isOccupied()) {
+                if (board[xNE][yNE].getOccupyingPiece().getColor() == this.color) {
                     break;
                 } else {
-                    diagOccup.add(board[yNE][xNE]);
+                    diagOccup.add(board[xNE][yNE]);
                     break;
                 }
             } else {
-                diagOccup.add(board[yNE][xNE]);
+                diagOccup.add(board[xNE][yNE]);
                 yNE--;
                 xNE++;
             }

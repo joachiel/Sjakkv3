@@ -1,7 +1,5 @@
 package Project.Game;
 
-
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +11,7 @@ public class King extends Piece {
 
     @Override
     public List<Square> getLegalMoves(Board b) {
-LinkedList<Square> legalMoves = new LinkedList<Square>();
+        LinkedList<Square> legalMoves = new LinkedList<Square>();
         
         Square[][] board = b.getBoard();
         
@@ -24,10 +22,10 @@ LinkedList<Square> legalMoves = new LinkedList<Square>();
             for (int k = 1; k > -2; k--) {
                 if(!(i == 0 && k == 0)) {
                     try {
-                        if(!board[y + k][x + i].isOccupied() || 
-                                board[y + k][x + i].getOccupyingPiece().getColor() 
+                        if(!board[x + i][y + k].isOccupied() || 
+                                board[x + i][y + k].getOccupyingPiece().getColor() 
                                 != this.getColor()) {
-                            legalMoves.add(board[y + k][x + i]);
+                            legalMoves.add(board[x + i][y + k]);
                         }
                     } catch (ArrayIndexOutOfBoundsException e) {
                         continue;
