@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 
 import Project.Game.Board;
+import Project.Game.moveWrite;
 
 
 public class ChessController {
@@ -30,6 +31,7 @@ public class ChessController {
     @FXML Button btn;
 
     Board board;
+    moveWrite writer;
 
     boolean started = false;
 
@@ -42,6 +44,7 @@ public class ChessController {
     @FXML
     public void initChess(){
         board = new Board();
+        writer = new moveWrite();
     }
 
     @FXML
@@ -54,10 +57,8 @@ public class ChessController {
                 Integer cordY = Integer.parseInt(String.valueOf(pane.charAt(0)));
                 Integer cordX = Integer.parseInt(String.valueOf(pane.charAt(1)));
                 board.moveTo(cordX, cordY);
+                moveOut.setText(writer.getMovesFromFile("moves.txt"));
                 if(board.moved == true){
-                String move = selectedPiece.getId() + "-" + cordX + ":" + cordY;
-                board.writeStateToFile("/moves.txt", move);
-                moveOut.setText(board.readStateFromFile("/moves.txt"));
                 previousSquare.getChildren().remove(selectedPiece);
                 selectedSquare.getChildren().add(selectedPiece);
                         if(selectedSquare.getChildren().size() > 1){
