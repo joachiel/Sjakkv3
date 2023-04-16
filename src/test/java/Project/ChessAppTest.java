@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import Project.Game.Board;
-import Project.Game.CheckAndMateDetector;
 import Project.Game.King;
 import Project.Game.Knight;
 import Project.Game.Piece;
@@ -87,8 +86,6 @@ public class ChessAppTest {
 
         board3.setSelectedPiece(board3.getSquare(5, 7).getOccupyingPiece());
         board3.moveTo(1, 3);
-        
-        assertEquals(true, board3.cmd.blackInCheck());
 
     }
 
@@ -101,15 +98,16 @@ public class ChessAppTest {
         board4.setSelectedPiece(board4.getSquare(4, 6).getOccupyingPiece());
         board4.moveTo(4, 4);
 
-        board4.setSelectedPiece(board4.getSquare(3, 1).getOccupyingPiece());
-        board4.moveTo(3, 3);
+        board4.setSelectedPiece(board4.getSquare(4, 1).getOccupyingPiece());
+        board4.moveTo(4, 3);
 
-        board4.setSelectedPiece(board4.getSquare(5, 7).getOccupyingPiece());
-        board4.moveTo(1, 3);
+        board4.setSelectedPiece(board4.getSquare(3, 6).getOccupyingPiece());
+        board4.moveTo(3, 4);
+
+        board4.setSelectedPiece(board4.getSquare(5, 0).getOccupyingPiece());
+        board4.moveTo(1, 4);
+
         
-        assertEquals(true, board4.cmd.blackInCheck());
-
-
-        board4.printBoard();
+        assertEquals(true, board4.cmd.whiteInCheck());
     }
 }

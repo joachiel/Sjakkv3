@@ -1,1 +1,1 @@
-Bishop:1, 3
+Bishop:1, 4
