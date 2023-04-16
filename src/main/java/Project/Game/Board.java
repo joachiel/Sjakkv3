@@ -25,6 +25,7 @@ public class Board {
     private int selectedY;
 
     private CheckAndMateDetector cmd;
+    private moveWrite write;
 
     public Board(){
         board = new Square[8][8];
@@ -77,6 +78,7 @@ public class Board {
             }
         }
         cmd = new CheckAndMateDetector(this, whitePieces, blackPieces, wk, bk);
+        write = new moveWrite();
     }
     public void printBoard() {
         System.out.println("  0 1 2 3 4 5 6 7");
@@ -144,6 +146,9 @@ public class Board {
 
             if(legalMoves.contains(sq) && movable.contains(sq) && cmd.testMove(selectedPiece, sq) && selectedPiece.move(sq)){
                 selectedPiece.move(sq);
+                String move = this.selectedPiece.getClass()+ ":" + sq.getX() + ", " + sq.getY();
+                System.out.println(move.replace("class Project.Game.", ""));
+                write.writeMovesToFile("moves.txt", move.replace("class Project.Game.", ""));
                 cmd.update();
                 if(cmd.blackCheckMated()){
                     selectedPiece = null;
@@ -165,18 +170,5 @@ public class Board {
         else {
             this.selectedPiece = null;
         }
-    }
-
-    public void writeStateToFile(String path, String move) throws IOException{
-        List<String> lines = FileHelper.readLines(path, false);
-        lines.add(move);
-        
-        FileHelper.writeLines(path, lines);
-    }
-
-    public String readStateFromFile(String path) throws IOException{
-        List<String> lines = FileHelper.readLines(path, false);
-
-        return lines.get(lines.size()-1);
     }
 }
