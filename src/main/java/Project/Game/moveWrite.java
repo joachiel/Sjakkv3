@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class moveWrite {
+public class moveWrite implements writeInterface{
     
     public void writeMovesToFile(String filename, String move){
         try {
