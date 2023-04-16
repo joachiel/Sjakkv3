@@ -145,7 +145,7 @@ public class Board {
                 cmd.update();
                 if(cmd.blackCheckMated()){
                     selectedPiece = null;
-                    System.out.println(this.blackCheckMate = true);
+                    this.blackCheckMate = true;
                     this.moved = true;
                 }
                 else if(cmd.whiteCheckMated()){

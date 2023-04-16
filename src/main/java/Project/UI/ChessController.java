@@ -1,27 +1,15 @@
 package Project.UI;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
-
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import Project.Game.Board;
-import Project.Game.CheckAndMateDetector;
-import Project.Game.Piece;
-import Project.Game.Rook;
-import Project.Game.Square;
+
 
 public class ChessController {
 
@@ -32,7 +20,12 @@ public class ChessController {
                pane40, pane41, pane42, pane43, pane44, pane45, pane46, pane47, pane50, pane51, pane52, pane53, pane54, pane55, pane56, pane57,
                pane60, pane61, pane62, pane63, pane64, pane65, pane66, pane67, pane70, pane71, pane72, pane73, pane74, pane75, pane76, pane77;
     
-    @FXML private ImageView wr1, wr2, wn1, wn2;
+    @FXML ImageView br1, bn1, bb1, bq, bk, bb2, bn2, br2, bp1, bp11, bp111, bp1111, bp11111, bp111111, bp1111111, bp11111111,
+                    wr1, wn1, wb1, wq, wk, wb2, wn2, wr2, wp1, wp2, wp21, wp211, wp212, wp2121, wp21211, wp212111;
+    
+    @FXML TextArea checkMate;
+
+    @FXML Button btn;
 
     Board board;
 
@@ -71,6 +64,17 @@ public class ChessController {
                 this.selectedPiece = null;
                 
                 board.moved = false;
+                if(board.whiteCheckMate){
+                    checkMate.setText("White has been checkmated");
+                    checkMate.setVisible(true);
+                    btn.setVisible(true);
+                    
+                }
+                if(board.blackCheckMate){
+                    checkMate.setVisible(true);
+                    checkMate.setText("Black has been checkmated");
+                    btn.setVisible(true);
+                }
                     }
                     else{
                         board.setSelectedPiece(null);
@@ -95,6 +99,13 @@ public class ChessController {
                 this.selectedPiece = null;
             }
         }
+    }
+
+    @FXML
+    public void restartGame(){
+        board = null;
+        board = new Board();
+        board.printBoard();
     }
 }
 

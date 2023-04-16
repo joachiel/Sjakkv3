@@ -130,7 +130,7 @@ public class CheckAndMateDetector {
         if (wMoves.get(sq).isEmpty()) {
             movableSquares.addAll(squares);
             return false;
-        } else System.out.println("Black in check"); return true;
+        } else return true;
     }
     
     /**
@@ -208,12 +208,6 @@ public class CheckAndMateDetector {
             if (tMoves.get(sq).isEmpty()) {
                 movableSquares.add(sq);
                 evade = true;
-                System.out.println(sq.getX());
-                System.out.println(sq.getY());
-            }
-            for (Map.Entry<Square, List<Piece>> entry : tMoves.entrySet()){
-                System.out.println(entry.getKey().getX() + ":" + entry.getKey().getY());
-                System.out.println(entry.getValue());
             }
         }
         return evade;
@@ -257,7 +251,7 @@ public class CheckAndMateDetector {
      * Helper method to determine if check can be blocked by a piece.
      */
     private boolean canBlock(List<Piece> threats, 
-            Map <Square,List<Piece>> blockMoves, Piece k) {
+        Map <Square,List<Piece>> blockMoves, Piece k) {
         boolean blockable = false;
         
         if (threats.size() == 1) {
@@ -271,9 +265,9 @@ public class CheckAndMateDetector {
                 
                 for (int i = min + 1; i < max; i++) {
                     List<Piece> blks = 
-                            blockMoves.get(brdArray[ks.getX()][i]);
+                        blockMoves.get(brdArray[ks.getX()][i]);
                     ConcurrentLinkedDeque<Piece> blockers = 
-                            new ConcurrentLinkedDeque<Piece>();
+                        new ConcurrentLinkedDeque<Piece>();
                     blockers.addAll(blks);
                     
                     if (!blockers.isEmpty()) {
