@@ -51,8 +51,6 @@ public class ChessController {
 
     @FXML
     public void moveTo(MouseEvent event){
-        System.out.println(board.getSelectedPiece());
-        System.out.println(this.selectedPiece);
         if(board.getSelectedPiece() != null && this.selectedPiece != null){
             this.previousSquare = (Pane) this.selectedPiece.getParent();
             this.selectedSquare = (Pane) event.getSource();
