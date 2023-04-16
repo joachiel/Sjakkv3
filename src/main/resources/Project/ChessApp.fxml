@@ -166,7 +166,14 @@
         <Pane fx:id="pane26" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
         <Pane fx:id="pane27" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="7" GridPane.rowIndex="2" />
         <Pane fx:id="pane30" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.rowIndex="3" />
-        <Pane fx:id="pane31" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Pane fx:id="pane31" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <ImageView id="bp1" fx:id="bp12" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="10.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
         <Pane fx:id="pane32" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
         <Pane fx:id="pane33" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
         <Pane fx:id="pane34" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
