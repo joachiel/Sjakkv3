@@ -6,7 +6,7 @@ public class Square {
     private int x;
     private int y;
 
-    Square(Board b, int x, int y) {
+    public Square(Board b, int x, int y) {
         this.board = b;
         this.x = x;
         this.y = y; 
