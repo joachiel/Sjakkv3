@@ -8,7 +8,7 @@ public abstract class Piece {
     private Square currentSquare;
     
     Piece(int color, Square square) {
-        if(color == 0 && color == 1){
+        if(color == 0 || color == 1){
             this.color = color;
         }
         this.currentSquare = square;
@@ -55,7 +55,7 @@ public abstract class Piece {
             if (board[x][i].isOccupied()) {
                 if (board[x][i].getOccupyingPiece().getColor() != this.color) {
                     lastYabove = i;
-                } else lastYabove = i + 1;
+                } else lastYabove = i+1;
             }
         }
 
@@ -94,7 +94,6 @@ public abstract class Piece {
         for (int i = occups[2]; i <= occups[3]; i++) {
             if (i != x) linearOccup.add(board[i][y]);
         }
-
         return linearOccup;
     }
 

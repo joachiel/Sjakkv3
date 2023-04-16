@@ -93,14 +93,70 @@
                </image>
             </ImageView>
          </children></Pane>
-        <Pane fx:id="pane10" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.rowIndex="1" />
-        <Pane fx:id="pane11" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <Pane fx:id="pane12" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-        <Pane fx:id="pane13" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-        <Pane fx:id="pane14" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-        <Pane fx:id="pane15" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-        <Pane fx:id="pane16" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-        <Pane fx:id="pane17" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+        <Pane fx:id="pane10" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.rowIndex="1">
+         <children>
+            <ImageView id="bp1" fx:id="bp1" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+        <Pane fx:id="pane11" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <ImageView id="bp11" fx:id="bp11" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+        <Pane fx:id="pane12" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <ImageView id="bp12" fx:id="bp111" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+        <Pane fx:id="pane13" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+         <children>
+            <ImageView id="bp13" fx:id="bp1111" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+        <Pane fx:id="pane14" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="4" GridPane.rowIndex="1">
+         <children>
+            <ImageView id="bp14" fx:id="bp11111" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+        <Pane fx:id="pane15" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+         <children>
+            <ImageView id="bp15" fx:id="bp111111" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+        <Pane fx:id="pane16" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="6" GridPane.rowIndex="1">
+         <children>
+            <ImageView id="bp16" fx:id="bp1111111" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+        <Pane fx:id="pane17" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="1">
+         <children>
+            <ImageView id="bp17" fx:id="bp11111111" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
         <Pane fx:id="pane20" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
         <Pane fx:id="pane21" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Pane fx:id="pane22" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
@@ -141,13 +197,62 @@
                </image>
             </ImageView>
          </children></Pane>
-        <Pane fx:id="pane61" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-        <Pane fx:id="pane62" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-        <Pane fx:id="pane63" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-        <Pane fx:id="pane64" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-        <Pane fx:id="pane65" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="5" GridPane.rowIndex="6" />
-        <Pane fx:id="pane66" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
-        <Pane fx:id="pane67" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+        <Pane fx:id="pane61" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <children>
+            <ImageView id="wp2" fx:id="wp2" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+        <Pane fx:id="pane62" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+         <children>
+            <ImageView id="wp3" fx:id="wp21" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+        <Pane fx:id="pane63" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="3" GridPane.rowIndex="6">
+         <children>
+            <ImageView id="wp4" fx:id="wp211" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+        <Pane fx:id="pane64" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
+         <children>
+            <ImageView id="wp5" fx:id="wp212" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+        <Pane fx:id="pane65" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="5" GridPane.rowIndex="6">
+         <children>
+            <ImageView id="wp6" fx:id="wp2121" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+        <Pane fx:id="pane66" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="6">
+         <children>
+            <ImageView id="wp7" fx:id="wp21211" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+        <Pane fx:id="pane67" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.columnIndex="7" GridPane.rowIndex="6">
+         <children>
+            <ImageView id="wp8" fx:id="wp212111" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@wP.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
         <Pane fx:id="pane70" onMouseClicked="#moveTo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9c6332;" GridPane.rowIndex="7">
          <children>
             <ImageView id="wr1" fx:id="wr1" fitHeight="55.0" fitWidth="55.0" layoutX="4.0" layoutY="4.0" onMouseClicked="#selectPiece" pickOnBounds="true" preserveRatio="true">

@@ -35,8 +35,8 @@ public class Board {
 
     public void initializePieces() {
         for (int i = 0; i < 8; i++){
-            // board[i][1].setOccupyingPiece(new Pawn(1, board[i][1])); //Initialize the black pawns
-            // board[i][6].setOccupyingPiece(new Pawn(0, board[i][6])); //Initialize the white pawns
+            board[i][1].setOccupyingPiece(new Pawn(1, board[i][1])); //Initialize the black pawns
+            board[i][6].setOccupyingPiece(new Pawn(0, board[i][6])); //Initialize the white pawns
         }
         board[3][0].setOccupyingPiece(new Queen(1, board[3][0])); // The black queen
         board[3][7].setOccupyingPiece(new Queen(0, board[3][7])); // The white queen
@@ -65,10 +65,10 @@ public class Board {
         for(int i = 0; i < 2; i++){
             for (int j = 0; j < 8; j++){
                 blackPieces.add(board[j][i].getOccupyingPiece());
-                whitePieces.add(board[7-j][i].getOccupyingPiece());
+                whitePieces.add(board[j][7-i].getOccupyingPiece());
             }
         }
-        // cmd = new CheckAndMateDetector(this, whitePieces, blackPieces, wk, bk);
+        cmd = new CheckAndMateDetector(this, whitePieces, blackPieces, wk, bk);
     }
     public void printBoard() {
         System.out.println("  0 1 2 3 4 5 6 7");
@@ -106,12 +106,4 @@ public class Board {
     public Piece getSelectedPiece(){
         return this.selectedPiece;
     }
-    public static void main(String[] args) {
-        Board board1 = new Board();
-        board1.printBoard();
-        board1.board[0][0].getOccupyingPiece().getLegalMoves(board1);
-         for (Square s : board1.board[0][0].getOccupyingPiece().getLegalMoves(board1)) {
-            System.out.println(s.getX());
-            System.out.println(s.getY());
-            
-        }}}
+}

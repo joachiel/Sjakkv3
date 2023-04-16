@@ -36,27 +36,58 @@ public class ChessController {
     Pane selectedSquare = null;
     Pane previousSquare = null;
 
+    Boolean whiteTurn = true;
+
 
     @FXML
     public void moveTo(MouseEvent event){
-        if(this.selectedPiece != null){
-            this.previousSquare = (Pane) selectedPiece.getParent();
-            this.selectedSquare = (Pane) event.getSource();
-            if(this.previousSquare != this.selectedSquare){
-                String pane = selectedSquare.toString().replace("Pane[id=pane", "").replace("]", "");
-                Integer cordY = Integer.parseInt(String.valueOf(pane.charAt(0)));
-                Integer cordX = Integer.parseInt(String.valueOf(pane.charAt(1)));
-                List<Square> legalMoves = board1.getSelectedPiece().getLegalMoves(board1);
-                if(legalMoves.contains(board1.board[cordX][cordY]) && board1.getSelectedPiece().move(board1.board[cordX][cordY]) == true){
-                        board1.getSelectedPiece().move(board1.board[cordX][cordY]);
-                        previousSquare.getChildren().remove(selectedPiece);
-                        if(selectedSquare.getChildren() != null){
-                            selectedSquare.getChildren().removeAll();
-                        }
-                        selectedSquare.getChildren().add(selectedPiece);
-                        this.previousSquare = null;
-                        this.selectedSquare = null;
-                        this.selectedPiece = null;
+        if(this.whiteTurn == true){
+            if(this.selectedPiece != null){
+                this.previousSquare = (Pane) selectedPiece.getParent();
+                this.selectedSquare = (Pane) event.getSource();
+                if(this.previousSquare != this.selectedSquare){
+                    String pane = selectedSquare.toString().replace("Pane[id=pane", "").replace("]", "");
+                    Integer cordY = Integer.parseInt(String.valueOf(pane.charAt(0)));
+                    Integer cordX = Integer.parseInt(String.valueOf(pane.charAt(1)));
+                    List<Square> legalMoves = board1.getSelectedPiece().getLegalMoves(board1);
+                    if(legalMoves.contains(board1.board[cordX][cordY]) && board1.getSelectedPiece().move(board1.board[cordX][cordY]) == true && board1.getSelectedPiece().getColor() == 0){
+                            board1.getSelectedPiece().move(board1.board[cordX][cordY]);
+                            previousSquare.getChildren().remove(selectedPiece);
+                            selectedSquare.getChildren().add(selectedPiece);
+                            if(selectedSquare.getChildren().size() > 1){
+                                selectedSquare.getChildren().get(0).setVisible(false);
+                                selectedSquare.getChildren().remove(0);
+                            }
+                            this.previousSquare = null;
+                            this.selectedSquare = null;
+                            this.selectedPiece = null;
+                            this.whiteTurn = false;
+                    }
+                }
+            }
+        }
+        else{
+            if(this.selectedPiece != null){
+                this.previousSquare = (Pane) selectedPiece.getParent();
+                this.selectedSquare = (Pane) event.getSource();
+                if(this.previousSquare != this.selectedSquare){
+                    String pane = selectedSquare.toString().replace("Pane[id=pane", "").replace("]", "");
+                    Integer cordY = Integer.parseInt(String.valueOf(pane.charAt(0)));
+                    Integer cordX = Integer.parseInt(String.valueOf(pane.charAt(1)));
+                    List<Square> legalMoves = board1.getSelectedPiece().getLegalMoves(board1);
+                    if(legalMoves.contains(board1.board[cordX][cordY]) && board1.getSelectedPiece().move(board1.board[cordX][cordY]) == true && board1.getSelectedPiece().getColor() == 1){
+                            board1.getSelectedPiece().move(board1.board[cordX][cordY]);
+                            previousSquare.getChildren().remove(selectedPiece);
+                            selectedSquare.getChildren().add(selectedPiece);
+                            if(selectedSquare.getChildren().size() > 1){
+                                selectedSquare.getChildren().get(0).setVisible(false);
+                                selectedSquare.getChildren().remove(0);
+                            }
+                            this.previousSquare = null;
+                            this.selectedSquare = null;
+                            this.selectedPiece = null;
+                            this.whiteTurn = true;
+                    }
                 }
             }
         }
@@ -64,19 +95,31 @@ public class ChessController {
 
     @FXML
     public void selectPiece(MouseEvent event) {
-        if(this.selectedPiece == null){
-            this.selectedPiece = (ImageView) event.getSource();
-            Integer cordY = Integer.parseInt(String.valueOf(selectedPiece.getParent().toString().replace("Pane[id=pane", "").replace("]", "").charAt(0)));
-            Integer cordX = Integer.parseInt(String.valueOf(selectedPiece.getParent().toString().replace("Pane[id=pane", "").replace("]", "").charAt(1)));
-            board1.setSelectedPiece(board1.board[cordX][cordY].getOccupyingPiece());
-            System.out.println(selectedPiece);
-            List<Square> legalMoves = board1.getSelectedPiece().getLegalMoves(board1);
-            for (Square s : legalMoves) {
-                System.out.println("X: "+s.getX());
-                System.out.println("Y: "+s.getY());
+        if(this.whiteTurn == true){
+            if(this.selectedPiece == null){
+                this.selectedPiece = (ImageView) event.getSource();
+                Integer cordY = Integer.parseInt(String.valueOf(selectedPiece.getParent().toString().replace("Pane[id=pane", "").replace("]", "").charAt(0)));
+                Integer cordX = Integer.parseInt(String.valueOf(selectedPiece.getParent().toString().replace("Pane[id=pane", "").replace("]", "").charAt(1)));
+                if(board1.board[cordX][cordY].getOccupyingPiece().getColor() == 0){
+                    board1.setSelectedPiece(board1.board[cordX][cordY].getOccupyingPiece());
+                }
+                else{
+                    this.selectedPiece = null;
+                }
             }
-            System.out.println(board1.getSelectedPiece().getPosition().getX());
-            System.out.println(board1.getSelectedPiece().getPosition().getY());
+        }
+        else{
+            if(this.selectedPiece == null){
+                this.selectedPiece = (ImageView) event.getSource();
+                Integer cordY = Integer.parseInt(String.valueOf(selectedPiece.getParent().toString().replace("Pane[id=pane", "").replace("]", "").charAt(0)));
+                Integer cordX = Integer.parseInt(String.valueOf(selectedPiece.getParent().toString().replace("Pane[id=pane", "").replace("]", "").charAt(1)));
+                if(board1.board[cordX][cordY].getOccupyingPiece().getColor() == 1){
+                    board1.setSelectedPiece(board1.board[cordX][cordY].getOccupyingPiece());
+                }
+                else{
+                    this.selectedPiece = null;
+                }
+            }
         }
     }
 }
