@@ -24,7 +24,7 @@ public class Board {
     private int selectedX;
     private int selectedY;
 
-    private CheckAndMateDetector cmd;
+    public CheckAndMateDetector cmd;
     private moveWrite write;
 
     public Board(){
@@ -77,7 +77,7 @@ public class Board {
                 whitePieces.add(board[j][7-i].getOccupyingPiece());
             }
         }
-        cmd = new CheckAndMateDetector(this, whitePieces, blackPieces, wk, bk);
+        this.cmd = new CheckAndMateDetector(this, whitePieces, blackPieces, wk, bk);
         write = new moveWrite();
     }
     public void printBoard() {
@@ -106,7 +106,6 @@ public class Board {
     }
     public Square getSquare(int x, int y) {
         return this.board[x][y];
-
     }
 
     public boolean getTurn(){

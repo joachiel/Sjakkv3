@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import Project.Game.Board;
+import Project.Game.CheckAndMateDetector;
 import Project.Game.King;
 import Project.Game.Knight;
 import Project.Game.Piece;
@@ -76,6 +77,8 @@ public class ChessAppTest {
     public void testCheck() {
         Board board3 = new Board();
 
+        //Set up a position where the black king is in check, and see if the CheckandMateDetector class detects it.
+
         board3.setSelectedPiece(board3.getSquare(4, 6).getOccupyingPiece());
         board3.moveTo(4, 4);
 
@@ -84,6 +87,8 @@ public class ChessAppTest {
 
         board3.setSelectedPiece(board3.getSquare(5, 7).getOccupyingPiece());
         board3.moveTo(1, 3);
+        
+        assertEquals(true, board3.cmd.blackInCheck());
 
 
         board3.printBoard();
