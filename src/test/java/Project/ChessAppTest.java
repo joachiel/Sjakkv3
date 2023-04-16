@@ -74,7 +74,7 @@ public class ChessAppTest {
         assertEqualClasses(queen.getClass(), board2.getSquare(3, 7).getOccupyingPiece().getClass());
     }
     @Test
-    public void testCheck() {
+    public void testBlackCheck() {
         Board board3 = new Board();
 
         //Set up a position where the black king is in check, and see if the CheckandMateDetector class detects it.
@@ -90,7 +90,26 @@ public class ChessAppTest {
         
         assertEquals(true, board3.cmd.blackInCheck());
 
+    }
 
-        board3.printBoard();
+    @Test
+    public void testWhiteCheck() {
+        Board board4 = new Board();
+
+        //Set up a position where the black king is in check, and see if the CheckandMateDetector class detects it.
+
+        board4.setSelectedPiece(board4.getSquare(4, 6).getOccupyingPiece());
+        board4.moveTo(4, 4);
+
+        board4.setSelectedPiece(board4.getSquare(3, 1).getOccupyingPiece());
+        board4.moveTo(3, 3);
+
+        board4.setSelectedPiece(board4.getSquare(5, 7).getOccupyingPiece());
+        board4.moveTo(1, 3);
+        
+        assertEquals(true, board4.cmd.blackInCheck());
+
+
+        board4.printBoard();
     }
 }
