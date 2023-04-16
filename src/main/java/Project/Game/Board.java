@@ -3,14 +3,20 @@ package Project.Game;
 import java.util.LinkedList;
 import java.util.List;
 
+import javafx.scene.input.MouseEvent;
+
 public class Board {
     //Representation of the board
     public Square[][] board;
 
     public LinkedList<Piece> whitePieces;
     public LinkedList<Piece> blackPieces;
+    public List<Square> movable;
 
-    private boolean whiteTurn;
+    public boolean whiteTurn;
+    public boolean whiteCheckMate = false;
+    public boolean blackCheckMate = false;
+    public boolean moved = false;
 
     private Piece selectedPiece;
     private int selectedX;
@@ -105,5 +111,57 @@ public class Board {
 
     public Piece getSelectedPiece(){
         return this.selectedPiece;
+    }
+
+    public void selectPiece(int x, int y) {
+        Square sq = this.board[x][y];
+        if(sq.isOccupied()){
+            this.selectedPiece = sq.getOccupyingPiece();
+            if(selectedPiece.getColor() == 0 && !whiteTurn){
+                return;
+            }
+            if(selectedPiece.getColor() == 1 && whiteTurn){
+                return;
+            }
+        }
+    }
+
+    public void moveTo(int x, int y){
+        Square sq = this.board[x][y];
+        if (this.selectedPiece != null) {
+            if (this.selectedPiece.getColor() == 1 && whiteTurn){
+                return;
+                }
+            if (this.selectedPiece.getColor() == 0 && !whiteTurn){
+                return;
+                }
+            }
+
+            List<Square> legalMoves = this.selectedPiece.getLegalMoves(this);
+            movable = cmd.getAllowableSquares(whiteTurn);
+
+            if(legalMoves.contains(sq) && movable.contains(sq) && cmd.testMove(selectedPiece, sq) && selectedPiece.move(sq)){
+                selectedPiece.move(sq);
+                cmd.update();
+                if(cmd.blackCheckMated()){
+                    selectedPiece = null;
+                    System.out.println(this.blackCheckMate = true);
+                    this.moved = true;
+                }
+                else if(cmd.whiteCheckMated()){
+                    this.selectedPiece = null;
+                    this.whiteCheckMate = true;
+                    this.moved = true;
+                }
+                else{
+                    this.selectedPiece = null;
+                    this.whiteTurn = !whiteTurn;
+                    this.moved = true;
+                    movable = cmd.getAllowableSquares(whiteTurn);
+                }
+            }
+        else {
+            this.selectedPiece = null;
+        }
     }
 }

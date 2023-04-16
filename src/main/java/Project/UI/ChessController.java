@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
@@ -17,6 +18,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import Project.Game.Board;
+import Project.Game.CheckAndMateDetector;
+import Project.Game.Piece;
 import Project.Game.Rook;
 import Project.Game.Square;
 
@@ -31,94 +34,67 @@ public class ChessController {
     
     @FXML private ImageView wr1, wr2, wn1, wn2;
 
-    Board board1 =  new Board();
+    Board board;
+
+    boolean started = false;
+
     ImageView selectedPiece = null;
     Pane selectedSquare = null;
     Pane previousSquare = null;
 
-    Boolean whiteTurn = true;
 
 
     @FXML
-    public void moveTo(MouseEvent event){
-        if(this.whiteTurn == true){
-            if(this.selectedPiece != null){
-                this.previousSquare = (Pane) selectedPiece.getParent();
-                this.selectedSquare = (Pane) event.getSource();
-                if(this.previousSquare != this.selectedSquare){
-                    String pane = selectedSquare.toString().replace("Pane[id=pane", "").replace("]", "");
-                    Integer cordY = Integer.parseInt(String.valueOf(pane.charAt(0)));
-                    Integer cordX = Integer.parseInt(String.valueOf(pane.charAt(1)));
-                    List<Square> legalMoves = board1.getSelectedPiece().getLegalMoves(board1);
-                    if(legalMoves.contains(board1.board[cordX][cordY]) && board1.getSelectedPiece().move(board1.board[cordX][cordY]) == true && board1.getSelectedPiece().getColor() == 0){
-                            board1.getSelectedPiece().move(board1.board[cordX][cordY]);
-                            previousSquare.getChildren().remove(selectedPiece);
-                            selectedSquare.getChildren().add(selectedPiece);
-                            if(selectedSquare.getChildren().size() > 1){
-                                selectedSquare.getChildren().get(0).setVisible(false);
-                                selectedSquare.getChildren().remove(0);
-                            }
-                            this.previousSquare = null;
-                            this.selectedSquare = null;
-                            this.selectedPiece = null;
-                            this.whiteTurn = false;
-                    }
-                }
-            }
-        }
-        else{
-            if(this.selectedPiece != null){
-                this.previousSquare = (Pane) selectedPiece.getParent();
-                this.selectedSquare = (Pane) event.getSource();
-                if(this.previousSquare != this.selectedSquare){
-                    String pane = selectedSquare.toString().replace("Pane[id=pane", "").replace("]", "");
-                    Integer cordY = Integer.parseInt(String.valueOf(pane.charAt(0)));
-                    Integer cordX = Integer.parseInt(String.valueOf(pane.charAt(1)));
-                    List<Square> legalMoves = board1.getSelectedPiece().getLegalMoves(board1);
-                    if(legalMoves.contains(board1.board[cordX][cordY]) && board1.getSelectedPiece().move(board1.board[cordX][cordY]) == true && board1.getSelectedPiece().getColor() == 1){
-                            board1.getSelectedPiece().move(board1.board[cordX][cordY]);
-                            previousSquare.getChildren().remove(selectedPiece);
-                            selectedSquare.getChildren().add(selectedPiece);
-                            if(selectedSquare.getChildren().size() > 1){
-                                selectedSquare.getChildren().get(0).setVisible(false);
-                                selectedSquare.getChildren().remove(0);
-                            }
-                            this.previousSquare = null;
-                            this.selectedSquare = null;
-                            this.selectedPiece = null;
-                            this.whiteTurn = true;
-                    }
-                }
-            }
-        }
+    public void initChess(){
+        board = new Board();
     }
 
     @FXML
-    public void selectPiece(MouseEvent event) {
-        if(this.whiteTurn == true){
-            if(this.selectedPiece == null){
-                this.selectedPiece = (ImageView) event.getSource();
-                Integer cordY = Integer.parseInt(String.valueOf(selectedPiece.getParent().toString().replace("Pane[id=pane", "").replace("]", "").charAt(0)));
-                Integer cordX = Integer.parseInt(String.valueOf(selectedPiece.getParent().toString().replace("Pane[id=pane", "").replace("]", "").charAt(1)));
-                if(board1.board[cordX][cordY].getOccupyingPiece().getColor() == 0){
-                    board1.setSelectedPiece(board1.board[cordX][cordY].getOccupyingPiece());
-                }
-                else{
-                    this.selectedPiece = null;
+    public void moveTo(MouseEvent event){
+        System.out.println(board.getSelectedPiece());
+        System.out.println(this.selectedPiece);
+        if(board.getSelectedPiece() != null && this.selectedPiece != null){
+            this.previousSquare = (Pane) this.selectedPiece.getParent();
+            this.selectedSquare = (Pane) event.getSource();
+            if(this.previousSquare != this.selectedSquare){
+                String pane = selectedSquare.toString().replace("Pane[id=pane", "").replace("]", "");
+                Integer cordY = Integer.parseInt(String.valueOf(pane.charAt(0)));
+                Integer cordX = Integer.parseInt(String.valueOf(pane.charAt(1)));
+                board.moveTo(cordX, cordY);
+                if(board.moved == true){
+                previousSquare.getChildren().remove(selectedPiece);
+                selectedSquare.getChildren().add(selectedPiece);
+                        if(selectedSquare.getChildren().size() > 1){
+                            selectedSquare.getChildren().get(0).setVisible(false);
+                            selectedSquare.getChildren().remove(0);
+                        }
+                this.previousSquare = null;
+                this.selectedSquare = null;
+                this.selectedPiece = null;
+                
+                board.moved = false;
+                    }
+                    else{
+                        board.setSelectedPiece(null);
+                        this.selectedPiece = null;
+                    }
                 }
             }
         }
-        else{
-            if(this.selectedPiece == null){
-                this.selectedPiece = (ImageView) event.getSource();
-                Integer cordY = Integer.parseInt(String.valueOf(selectedPiece.getParent().toString().replace("Pane[id=pane", "").replace("]", "").charAt(0)));
-                Integer cordX = Integer.parseInt(String.valueOf(selectedPiece.getParent().toString().replace("Pane[id=pane", "").replace("]", "").charAt(1)));
-                if(board1.board[cordX][cordY].getOccupyingPiece().getColor() == 1){
-                    board1.setSelectedPiece(board1.board[cordX][cordY].getOccupyingPiece());
-                }
-                else{
-                    this.selectedPiece = null;
-                }
+
+    @FXML
+    public void selectPiece(MouseEvent event) {
+        if(this.started == false){
+            initChess();
+            this.started = true;
+        }
+        if(board.getSelectedPiece() == null && this.selectedPiece == null){
+            this.selectedPiece = (ImageView) event.getSource();
+            Integer cordY = Integer.parseInt(String.valueOf(selectedPiece.getParent().toString().replace("Pane[id=pane", "").replace("]", "").charAt(0)));
+            Integer cordX = Integer.parseInt(String.valueOf(selectedPiece.getParent().toString().replace("Pane[id=pane", "").replace("]", "").charAt(1)));
+            board.selectPiece(cordX, cordY);
+            if(board.getSelectedPiece() == null){
+                this.selectedPiece = null;
             }
         }
     }

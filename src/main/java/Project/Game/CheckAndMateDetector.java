@@ -19,8 +19,8 @@ public class CheckAndMateDetector {
     private LinkedList<Piece> bPieces;
     private LinkedList<Square> movableSquares;
     private final LinkedList<Square> squares;
-    private King bk;
-    private King wk;
+    private Piece bk;
+    private Piece wk;
     private HashMap<Square,List<Piece>> wMoves;
     private HashMap<Square,List<Piece>> bMoves;
     
@@ -35,7 +35,7 @@ public class CheckAndMateDetector {
      * @param bk Piece object representing the black king
      */
     public CheckAndMateDetector(Board b, LinkedList<Piece> whitePieces, 
-            LinkedList<Piece> blackPieces, King wk, King bk) {
+            LinkedList<Piece> blackPieces, Piece wk, Piece bk) {
         this.b = b;
         this.wPieces = whitePieces;
         this.bPieces = blackPieces;
@@ -53,9 +53,9 @@ public class CheckAndMateDetector {
         // add all squares to squares list and as hashmap keys
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                squares.add(brd[y][x]);
-                wMoves.put(brd[y][x], new LinkedList<Piece>());
-                bMoves.put(brd[y][x], new LinkedList<Piece>());
+                squares.add(brd[x][y]);
+                wMoves.put(brd[x][y], new LinkedList<Piece>());
+                bMoves.put(brd[x][y], new LinkedList<Piece>());
             }
         }
         
@@ -130,7 +130,7 @@ public class CheckAndMateDetector {
         if (wMoves.get(sq).isEmpty()) {
             movableSquares.addAll(squares);
             return false;
-        } else return true;
+        } else System.out.println("Black in check"); return true;
     }
     
     /**
@@ -196,7 +196,7 @@ public class CheckAndMateDetector {
      * Helper method to determine if the king can evade the check.
      * Gives a false positive if the king can capture the checking piece.
      */
-    private boolean canEvade(Map<Square,List<Piece>> tMoves, King tKing) {
+    private boolean canEvade(Map<Square,List<Piece>> tMoves, Piece tKing) {
         boolean evade = false;
         List<Square> kingsMoves = tKing.getLegalMoves(b);
         Iterator<Square> iterator = kingsMoves.iterator();
@@ -208,9 +208,14 @@ public class CheckAndMateDetector {
             if (tMoves.get(sq).isEmpty()) {
                 movableSquares.add(sq);
                 evade = true;
+                System.out.println(sq.getX());
+                System.out.println(sq.getY());
+            }
+            for (Map.Entry<Square, List<Piece>> entry : tMoves.entrySet()){
+                System.out.println(entry.getKey().getX() + ":" + entry.getKey().getY());
+                System.out.println(entry.getValue());
             }
         }
-        
         return evade;
     }
     
@@ -218,7 +223,7 @@ public class CheckAndMateDetector {
      * Helper method to determine if the threatening piece can be captured.
      */
     private boolean canCapture(Map<Square,List<Piece>> poss, 
-            List<Piece> threats, King k) {
+            List<Piece> threats, Piece k) {
         
         boolean capture = false;
         if (threats.size() == 1) {
@@ -252,7 +257,7 @@ public class CheckAndMateDetector {
      * Helper method to determine if check can be blocked by a piece.
      */
     private boolean canBlock(List<Piece> threats, 
-            Map <Square,List<Piece>> blockMoves, King k) {
+            Map <Square,List<Piece>> blockMoves, Piece k) {
         boolean blockable = false;
         
         if (threats.size() == 1) {
@@ -266,16 +271,16 @@ public class CheckAndMateDetector {
                 
                 for (int i = min + 1; i < max; i++) {
                     List<Piece> blks = 
-                            blockMoves.get(brdArray[i][ks.getX()]);
+                            blockMoves.get(brdArray[ks.getX()][i]);
                     ConcurrentLinkedDeque<Piece> blockers = 
                             new ConcurrentLinkedDeque<Piece>();
                     blockers.addAll(blks);
                     
                     if (!blockers.isEmpty()) {
-                        movableSquares.add(brdArray[i][ks.getX()]);
+                        movableSquares.add(brdArray[ks.getX()][i]);
                         
                         for (Piece p : blockers) {
-                            if (testMove(p,brdArray[i][ks.getX()])) {
+                            if (testMove(p,brdArray[ks.getX()][i])) {
                                 blockable = true;
                             }
                         }
@@ -290,17 +295,17 @@ public class CheckAndMateDetector {
                 
                 for (int i = min + 1; i < max; i++) {
                     List<Piece> blks = 
-                            blockMoves.get(brdArray[ks.getY()][i]);
+                            blockMoves.get(brdArray[i][ks.getY()]);
                     ConcurrentLinkedDeque<Piece> blockers = 
                             new ConcurrentLinkedDeque<Piece>();
                     blockers.addAll(blks);
                     
                     if (!blockers.isEmpty()) {
                         
-                        movableSquares.add(brdArray[ks.getY()][i]);
+                        movableSquares.add(brdArray[i][ks.getY()]);
                         
                         for (Piece p : blockers) {
-                            if (testMove(p, brdArray[ks.getY()][i])) {
+                            if (testMove(p, brdArray[i][ks.getY()])) {
                                 blockable = true;
                             }
                         }
@@ -321,16 +326,16 @@ public class CheckAndMateDetector {
                     for (int i = tX + 1; i < kX; i++) {
                         tY++;
                         List<Piece> blks = 
-                                blockMoves.get(brdArray[tY][i]);
+                                blockMoves.get(brdArray[i][tY]);
                         ConcurrentLinkedDeque<Piece> blockers = 
                                 new ConcurrentLinkedDeque<Piece>();
                         blockers.addAll(blks);
                         
                         if (!blockers.isEmpty()) {
-                            movableSquares.add(brdArray[tY][i]);
+                            movableSquares.add(brdArray[i][tY]);
                             
                             for (Piece p : blockers) {
-                                if (testMove(p, brdArray[tY][i])) {
+                                if (testMove(p, brdArray[i][tY])) {
                                     blockable = true;
                                 }
                             }
@@ -342,16 +347,16 @@ public class CheckAndMateDetector {
                     for (int i = tX + 1; i < kX; i++) {
                         tY--;
                         List<Piece> blks = 
-                                blockMoves.get(brdArray[tY][i]);
+                                blockMoves.get(brdArray[i][tY]);
                         ConcurrentLinkedDeque<Piece> blockers = 
                                 new ConcurrentLinkedDeque<Piece>();
                         blockers.addAll(blks);
                         
                         if (!blockers.isEmpty()) {
-                            movableSquares.add(brdArray[tY][i]);
+                            movableSquares.add(brdArray[i][tY]);
                             
                             for (Piece p : blockers) {
-                                if (testMove(p, brdArray[tY][i])) {
+                                if (testMove(p, brdArray[i][tY])) {
                                     blockable = true;
                                 }
                             }
@@ -363,16 +368,16 @@ public class CheckAndMateDetector {
                     for (int i = tX - 1; i > kX; i--) {
                         tY++;
                         List<Piece> blks = 
-                                blockMoves.get(brdArray[tY][i]);
+                                blockMoves.get(brdArray[i][tY]);
                         ConcurrentLinkedDeque<Piece> blockers = 
                                 new ConcurrentLinkedDeque<Piece>();
                         blockers.addAll(blks);
                         
                         if (!blockers.isEmpty()) {
-                            movableSquares.add(brdArray[tY][i]);
+                            movableSquares.add(brdArray[i][tY]);
                             
                             for (Piece p : blockers) {
-                                if (testMove(p, brdArray[tY][i])) {
+                                if (testMove(p, brdArray[i][tY])) {
                                     blockable = true;
                                 }
                             }
@@ -384,16 +389,16 @@ public class CheckAndMateDetector {
                     for (int i = tX - 1; i > kX; i--) {
                         tY--;
                         List<Piece> blks = 
-                                blockMoves.get(brdArray[tY][i]);
+                                blockMoves.get(brdArray[i][tY]);
                         ConcurrentLinkedDeque<Piece> blockers = 
                                 new ConcurrentLinkedDeque<Piece>();
                         blockers.addAll(blks);
                         
                         if (!blockers.isEmpty()) {
-                            movableSquares.add(brdArray[tY][i]);
+                            movableSquares.add(brdArray[i][tY]);
                             
                             for (Piece p : blockers) {
-                                if (testMove(p, brdArray[tY][i])) {
+                                if (testMove(p, brdArray[i][tY])) {
                                     blockable = true;
                                 }
                             }
@@ -440,8 +445,8 @@ public class CheckAndMateDetector {
         p.move(sq);
         update();
         
-        if (p.getColor() == 0 && blackInCheck()) movetest = false;
-        else if (p.getColor() == 1 && whiteInCheck()) movetest = false;
+        if (p.getColor() == 1 && blackInCheck()) movetest = false;
+        else if (p.getColor() == 0 && whiteInCheck()) movetest = false;
         
         p.move(init);
         if (c != null) sq.setOccupyingPiece(c);;
