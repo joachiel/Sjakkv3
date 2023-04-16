@@ -31,7 +31,6 @@ public class FileHelper {
         if (!resource) {
             return Files.readAllLines(Path.of(path));
         }
-
         try (InputStream resourceAsStream = FileHelper.class.getResourceAsStream(path)) {
             if (resourceAsStream == null) {
                 throw new IOException("Resource not found");

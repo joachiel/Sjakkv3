@@ -8,6 +8,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
+import java.io.IOException;
+
 import Project.Game.Board;
 
 
@@ -23,7 +25,7 @@ public class ChessController {
     @FXML ImageView br1, bn1, bb1, bq, bk, bb2, bn2, br2, bp1, bp11, bp111, bp1111, bp11111, bp111111, bp1111111, bp11111111,
                     wr1, wn1, wb1, wq, wk, wb2, wn2, wr2, wp1, wp2, wp21, wp211, wp212, wp2121, wp21211, wp212111;
     
-    @FXML TextArea checkMate;
+    @FXML TextArea checkMate, moveOut;
 
     @FXML Button btn;
 
@@ -43,7 +45,7 @@ public class ChessController {
     }
 
     @FXML
-    public void moveTo(MouseEvent event){
+    public void moveTo(MouseEvent event) throws IOException{
         if(board.getSelectedPiece() != null && this.selectedPiece != null){
             this.previousSquare = (Pane) this.selectedPiece.getParent();
             this.selectedSquare = (Pane) event.getSource();
@@ -53,6 +55,9 @@ public class ChessController {
                 Integer cordX = Integer.parseInt(String.valueOf(pane.charAt(1)));
                 board.moveTo(cordX, cordY);
                 if(board.moved == true){
+                String move = selectedPiece.getId() + "-" + cordX + ":" + cordY;
+                board.writeStateToFile("/moves.txt", move);
+                moveOut.setText(board.readStateFromFile("/moves.txt"));
                 previousSquare.getChildren().remove(selectedPiece);
                 selectedSquare.getChildren().add(selectedPiece);
                         if(selectedSquare.getChildren().size() > 1){
@@ -61,8 +66,7 @@ public class ChessController {
                         }
                 this.previousSquare = null;
                 this.selectedSquare = null;
-                this.selectedPiece = null;
-                
+                this.selectedPiece = null;   
                 board.moved = false;
                 if(board.whiteCheckMate){
                     checkMate.setText("White has been checkmated");

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.UI.ChessController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Project.UI.ChessController">
    <children>
       <GridPane fx:id="chessBoardView" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0">
          <columnConstraints>
@@ -358,5 +358,6 @@
       </GridPane>
       <TextArea fx:id="checkMate" layoutX="150.0" layoutY="210.0" prefHeight="81.0" prefWidth="203.0" visible="false" />
       <Button fx:id="btn" layoutX="224.0" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#restartGame" text="Restart" visible="false" />
+      <TextArea fx:id="moveOut" editable="false" layoutX="511.0" layoutY="14.0" prefHeight="63.0" prefWidth="75.0" />
    </children>
 </AnchorPane>

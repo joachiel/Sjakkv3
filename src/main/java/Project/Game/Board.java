@@ -1,8 +1,10 @@
 package Project.Game;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import Project.Util.FileHelper;
 import javafx.scene.input.MouseEvent;
 
 public class Board {
@@ -163,5 +165,18 @@ public class Board {
         else {
             this.selectedPiece = null;
         }
+    }
+
+    public void writeStateToFile(String path, String move) throws IOException{
+        List<String> lines = FileHelper.readLines(path, false);
+        lines.add(move);
+        
+        FileHelper.writeLines(path, lines);
+    }
+
+    public String readStateFromFile(String path) throws IOException{
+        List<String> lines = FileHelper.readLines(path, false);
+
+        return lines.get(lines.size()-1);
     }
 }
